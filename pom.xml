@@ -4,9 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>coinmarketapp</groupId>
+    <groupId>com.coinmarketapp</groupId>
     <artifactId>coinmarketapp</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <jre.level>1.8</jre.level>
+        <jdk.level>1.8</jdk.level>
+    </properties>
 
     <dependencies>
 
@@ -22,8 +29,9 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
+            <version>4.0.0-alpha-3</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
         <dependency>
@@ -31,7 +39,37 @@
             <artifactId>webdrivermanager</artifactId>
             <version>4.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.4.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
-    
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${jdk.level}</source>
+                    <target>${jdk.level}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <!-- TestNG suite XML files -->
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
