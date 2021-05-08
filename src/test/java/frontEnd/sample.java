@@ -32,26 +32,28 @@ public class sample {
     public String parentTab = null;
     public String childTab = null;
     public ArrayList<String> headingList;
-    public ArrayList<String> name;
-    public ArrayList<String> price;
-    public ArrayList<String> TwentyFourPercentage;
-    public ArrayList<String> sevenDaysPercentage;
-    public ArrayList<String> marketCap;
-    public ArrayList<String> VolumeInTwentyFourHrs;
-    public ArrayList<String> circulatingSupply;
-    // Name = //table//tr[1]//td[3]//div[contains(@class,'sc-16r8icm-0 sc-1teo54s-1 lgwUsc')]/p
-    // Price = //table//tr[1]//td[4]//div[contains(@class,'price___3rj7O')]/a
-    // 24 % = //table//tr[1]//td[5]//span[contains(@class,'sc-1v2ivon-0 fJLBDK')]
-    // 7d % = //table//tr[1]//td[6]//span[contains(@class,'sc-1v2ivon-0 fJLBDK')]
-    // Market Cap = //table//tr[1]//td[7]/p
-    // Volume(24h) = //table//tr[1]//td[8]//a/p
-    // Circulating Supply = //table//tr[1]//td[9]//p
+    public ArrayList<String> name = new ArrayList<String>();
+    ;
+    public ArrayList<String> price = new ArrayList<String>();
+    ;
+    public ArrayList<String> TwentyFourPercentage = new ArrayList<String>();
+    ;
+    public ArrayList<String> sevenDaysPercentage = new ArrayList<String>();
+    ;
+    public ArrayList<String> marketCap = new ArrayList<String>();
+    ;
+    public ArrayList<String> VolumeInTwentyFourHrs = new ArrayList<String>();
+    ;
+    public ArrayList<String> circulatingSupply = new ArrayList<String>();
+    ;
+
+
     @BeforeTest
     public void setUp() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     @Test(priority = 0)
@@ -71,6 +73,7 @@ public class sample {
         driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 iGZjcz')]")).click();
 
         // apply Filter for the first 100 results
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//div[starts-with(@class,'sc-1mxz8p6-10 iXekDn')]//div[contains(@class,'sc-16r8icm-0 tu1guj-0 hueEpF')]")).click();
         driver.findElement(By.xpath("//div[starts-with(@class,'sc-16r8icm-0 sc-1f0grbq-0 jvQpLZ')]//button[contains(@class,'sc-1ejyco6-0 igBkAX')][1]")).click();
 
@@ -100,19 +103,19 @@ public class sample {
         int counter = 0;
         for (int i = 1; i <= 5; i++) {
             driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + i + "]" + "//td[1]/span")).click();
-            if(driver.findElements(By.xpath("//button[@class='sc-1ejyco6-0 czBWYA']")).size() > 0 && counter == 0){
+            if (driver.findElements(By.xpath("//button[@class='sc-1ejyco6-0 czBWYA']")).size() > 0 && counter == 0) {
                 driver.findElement(By.xpath("//button[@class='sc-1ejyco6-0 czBWYA']")).click();
                 driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + i + "]" + "//td[1]/span")).click();
             }
             counter = counter + 1;
             WebElement starredicon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + i + "]" + "//td[1]/span[contains(@class,'is-starred')]")));
             boolean isStarred = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + i + "]" + "//td[1]/span[contains(@class,'is-starred')]")).size() > 0;
-            if(isStarred){
+            if (isStarred) {
                 String coinName = driver.findElement(By.xpath("//div//table//tbody//tr" + "[" + i + "]" + "//td[3]//div[@class='sc-16r8icm-0 sc-1teo54s-1 lgwUsc']/p")).getText();
                 System.out.println(coinName + " added to WatchList!!");
-            }else{
+            } else {
                 counter = counter + 1;
-                if(counter < 4){
+                if (counter < 4) {
                     driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + i + "]" + "//td[1]")).click();
                 }
             }
@@ -123,36 +126,89 @@ public class sample {
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
         childTab = newTab.getWindowHandle();
         driver.navigate().to("https://coinmarketcap.com/watchlist/");
+        Thread.sleep(3000);
         driver.switchTo().window(parentTab);
         Thread.sleep(3000);
     }
 
     @Test(priority = 2)
-    public void compareDataAfterApplyingFilter() {
-        // Name = //table//tr[1]//td[3]//div[contains(@class,'sc-16r8icm-0 sc-1teo54s-1 lgwUsc')]/p
-        // Price = //table//tr[1]//td[4]//div[contains(@class,'price___3rj7O')]/a
-        // 24 % = //table//tr[1]//td[5]//span[contains(@class,'sc-1v2ivon-0 fJLBDK')]
-        // 7d % = //table//tr[1]//td[6]//span[contains(@class,'sc-1v2ivon-0 fJLBDK')]
-        // Market Cap = //table//tr[1]//td[7]/p
-        // Volume(24h) = //table//tr[1]//td[8]//a/p
-        // Circulating Supply = //table//tr[1]//td[9]//p
-        /*
-            public ArrayList<String> name;
-            public ArrayList<String> price;
-            public ArrayList<String> TwentyFourPercentage;
-            public ArrayList<String> sevenDaysPercentage;
-            public ArrayList<String> marketCap;
-            public ArrayList<String> VolumeInTwentyFourHrs;
-            public ArrayList<String> circulatingSupply;
-         */
+    public void extractDataFromWebTable() {
 
         WebElement tableHeading = driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//th//p"));
         headingList = new ArrayList<String>();
         for (int i = 3; i <= 9; i++) {
             String tblHeading = driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//th//p")).getText();
             headingList.add(tblHeading);
-            System.out.println("Heading List ==> "+headingList.size());
+            System.out.println("Heading List ==> " + headingList.size());
         }
+
+        for (int j = 1; j <= totalResults; j++) {
+
+            WebElement _name_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[3]//div[contains(@class,'sc-16r8icm-0')]/p"));
+            Coordinates cor = ((Locatable) _name_).getCoordinates();
+            cor.inViewPort();
+            WebElement _price_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[4]//div[contains(@class,'price___3rj7O')]/a"));
+            WebElement _twentyFourPercentage_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[5]//span[contains(@class,'sc-1v2ivon-0')]"));
+            WebElement _sevenDaysPercentage_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[6]//span[contains(@class,'sc-1v2ivon-0')]"));
+            WebElement _marketCap_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[7]/p"));
+            WebElement _volumenInTwentyFourHrs_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[8]//a/p"));
+            WebElement _circulatingSupply_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[9]//p"));
+
+
+            String _name = _name_.getText();
+            String _price = _price_.getText();
+            String _twentyFourPercentage = _twentyFourPercentage_.getText();
+            String _sevenDaysPercentage = _sevenDaysPercentage_.getText();
+            String _marketCap = _marketCap_.getText();
+            String _volumenInTwentyFourHrs = _volumenInTwentyFourHrs_.getText();
+            String _circulatingSupply = _circulatingSupply_.getText();
+
+            name.add(_name);
+            price.add(_price);
+            TwentyFourPercentage.add(_twentyFourPercentage);
+            sevenDaysPercentage.add(_sevenDaysPercentage);
+            marketCap.add(_marketCap);
+            VolumeInTwentyFourHrs.add(_volumenInTwentyFourHrs);
+            circulatingSupply.add(_circulatingSupply);
+            System.out.println(name.size() + " -- " + _name + " -- " + _price + " -- " + _twentyFourPercentage + " -- " + _sevenDaysPercentage + " -- " + _marketCap + " -- " + _volumenInTwentyFourHrs + " -- " + _circulatingSupply);
+        }
+
+    }
+
+    @Test(priority = 3)
+    public void compareDataAfterFilter() {
+        WebElement filterBtn = driver.findElement(By.xpath("//div[@class='sc-1mxz8p6-8 gcSysL']//button[contains(@class,'table-control-filter')]"));
+        Coordinates cor = ((Locatable) filterBtn).getCoordinates();
+        cor.inViewPort();
+        filterBtn.click();
+
+        WebElement addFilterBtn = driver.findElement(By.xpath("//ul[@class='container___QEYqH']//li[5]/button"));
+        addFilterBtn.click();
+
+
+        int totalDrpDwn = driver.findElements(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']/button")).size();
+        System.out.println("DrpDwn Size ===> " + totalDrpDwn);
+        for (int drpDwn = 1; drpDwn <= totalDrpDwn; drpDwn++) {
+            driver.findElement(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']" + "[" + drpDwn + "]" + "/button")).click();
+            if(drpDwn < 5){
+                switch (drpDwn) {
+                    case 1:
+                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+                        break;
+                    case 2:
+                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+                        break;
+                    case 3:
+                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+                        break;
+                    case 4:
+                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+                        break;
+                }
+            }
+
+        }
+
 
     }
 
