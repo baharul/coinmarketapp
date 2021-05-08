@@ -176,44 +176,79 @@ public class sample {
     }
 
     @Test(priority = 3)
-    public void compareDataAfterFilter() {
+    public void compareDataAfterFilter() throws InterruptedException {
         WebElement filterBtn = driver.findElement(By.xpath("//div[@class='sc-1mxz8p6-8 gcSysL']//button[contains(@class,'table-control-filter')]"));
         Coordinates cor = ((Locatable) filterBtn).getCoordinates();
         cor.inViewPort();
-        filterBtn.click();
 
+
+        Actions action = new Actions(driver);
+        WebElement cryptoCurrencyMenuOption = driver.findElement(By.xpath("//ul[@class='sc-1evth2q-1 hpzJjv']//li[1]"));
+        action.moveToElement(cryptoCurrencyMenuOption).build().perform();
+        Thread.sleep(15000);
+        WebElement subMenuOption = driver.findElement(By.xpath("//div[@class='tippy-box']//div[starts-with(@class,'sc-134')]//h6"));
+        action.moveToElement(subMenuOption).build().perform();
+        Thread.sleep(5000);
+
+        WebElement logo = driver.findElement(By.xpath("//div[@class='sc-7i7lua-0 iuycCs cmc-logo cmc-logo--size-large']"));
+        action.moveToElement(logo).build().perform();
+        Thread.sleep(5000);
+
+
+        driver.findElement(By.xpath("//h1[@class='sc-1q9q90x-0 dlDcED']")).click();
+        filterBtn.click();
         WebElement addFilterBtn = driver.findElement(By.xpath("//ul[@class='container___QEYqH']//li[5]/button"));
         addFilterBtn.click();
 
 
         int totalDrpDwn = driver.findElements(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']/button")).size();
         System.out.println("DrpDwn Size ===> " + totalDrpDwn);
-        for (int drpDwn = 1; drpDwn <= totalDrpDwn; drpDwn++) {
-            driver.findElement(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']" + "[" + drpDwn + "]" + "/button")).click();
-            if(drpDwn < 5){
-                switch (drpDwn) {
-                    case 1:
-                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
-                        break;
-                    case 2:
-                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
-                        break;
-                    case 3:
-                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
-                        break;
-                    case 4:
-                        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
-                        break;
-                }
-            }
 
+        /*
+             Applying filters for
+             All Cryptocurrencies as "coin"
+             which is having Price as "0$-1$" ,
+             Volume as "> 10B",
+             Circulating Supply as "> 10B"
+             in which result should show only "DOGECOIN"
+         */
+
+        for (int drpDwn = 1; drpDwn <= totalDrpDwn; drpDwn++) {
+            WebElement _drpDwn = driver.findElement(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']" + "[" + drpDwn + "]" + "/button"));
+            String drpDwnName = _drpDwn.getText();
+
+            switch (drpDwnName) {
+                case "All Cryptocurrencies":
+                    _drpDwn.click();
+                    driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+                    break;
+                case "Price":
+                case "Circulating Supply":
+                case "Volume":
+                    _drpDwn.click();
+                    driver.findElement(By.xpath("//div[@class='cmc-filter-presets']/button[1]")).click();
+                    driver.findElement(By.xpath("//button[@data-qa-id='filter-dd-button-apply']")).click();
+                    break;
+                default:
+                    break;
+            }
+    }
+
+        driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 dgwIZo cmc-filter-button')]")).click();
+
+
+        String _nameAfterFilter_ = driver.findElement(By.xpath("//table//tbody//tr[1]//td[3]//div[contains(@class,'sc-16r8icm-0')]/p")).getText();
+        System.out.println("First Coin displayed after filter ==> "+ _nameAfterFilter_);
+
+        if(name.contains(_nameAfterFilter_)){
+            System.out.println("Hurray, As Expected DogeCoin Has filtered Out and results were compared successfully!!!!!!!!!!!!!!!!");
         }
 
 
     }
 
     @AfterTest
-    public void tearDown() {
-        //driver.quit();
+    public void tearDown() throws InterruptedException {
+        driver.quit();
     }
 }
