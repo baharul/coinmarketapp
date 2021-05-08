@@ -4,7 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class MyStepdefs {
+public class frontEndStepdefs {
     @Given("Precondition is given")
     public void preconditionIsGiven() {
         System.out.println("hello 1");

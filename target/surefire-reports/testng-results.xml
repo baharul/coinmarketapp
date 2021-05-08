@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="8" passed="8" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2021-05-08T23:37:17 GST" name="Coin Market Test cases" finished-at="2021-05-08T23:39:25 GST" duration-ms="128865">
+    <groups>
+    </groups>
+    <test started-at="2021-05-08T23:37:17 GST" name="Regression" finished-at="2021-05-08T23:39:25 GST" duration-ms="128865">
+      <class name="frontEnd.sample">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:37:17 GST" name="setUp" finished-at="2021-05-08T23:37:20 GST" duration-ms="3329" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="verifyHundredResultsDisplayed()[pri:0, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:37:20 GST" name="verifyHundredResultsDisplayed" finished-at="2021-05-08T23:37:45 GST" duration-ms="24594" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyHundredResultsDisplayed -->
+        <test-method signature="addToWatchList()[pri:1, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:37:45 GST" name="addToWatchList" finished-at="2021-05-08T23:37:55 GST" duration-ms="10125" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addToWatchList -->
+        <test-method signature="extractDataFromWebTable()[pri:2, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:37:55 GST" name="extractDataFromWebTable" finished-at="2021-05-08T23:38:29 GST" duration-ms="34400" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- extractDataFromWebTable -->
+        <test-method signature="compareDataAfterFilter()[pri:3, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:38:29 GST" name="compareDataAfterFilter" finished-at="2021-05-08T23:38:59 GST" duration-ms="30083" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- compareDataAfterFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:frontEnd.sample@68e5eea7]" started-at="2021-05-08T23:39:25 GST" name="tearDown" finished-at="2021-05-08T23:39:25 GST" duration-ms="194" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- frontEnd.sample -->
+      <class name="backEnd.sampleBackend">
+        <test-method signature="getCoinIds()[pri:0, instance:backEnd.sampleBackend@7b02881e]" started-at="2021-05-08T23:38:59 GST" name="getCoinIds" finished-at="2021-05-08T23:39:19 GST" duration-ms="20258" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getCoinIds -->
+        <test-method signature="convertToBolivianCurrency()[pri:1, instance:backEnd.sampleBackend@7b02881e]" started-at="2021-05-08T23:39:19 GST" name="convertToBolivianCurrency" finished-at="2021-05-08T23:39:23 GST" duration-ms="3469" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- convertToBolivianCurrency -->
+        <test-method signature="retrieveInfoOfEthereum()[pri:3, instance:backEnd.sampleBackend@7b02881e]" started-at="2021-05-08T23:39:23 GST" name="retrieveInfoOfEthereum" finished-at="2021-05-08T23:39:24 GST" duration-ms="1129" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retrieveInfoOfEthereum -->
+        <test-method signature="getMineableTagsAndCurrencyInfoOfFirstTenCurrencies()[pri:4, instance:backEnd.sampleBackend@7b02881e]" started-at="2021-05-08T23:39:24 GST" name="getMineableTagsAndCurrencyInfoOfFirstTenCurrencies" finished-at="2021-05-08T23:39:25 GST" duration-ms="1262" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getMineableTagsAndCurrencyInfoOfFirstTenCurrencies -->
+      </class> <!-- backEnd.sampleBackend -->
+    </test> <!-- Regression -->
+  </suite> <!-- Coin Market Test cases -->
+</testng-results>

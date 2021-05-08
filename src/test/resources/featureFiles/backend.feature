@@ -1,5 +1,4 @@
-
-@frontend
+@backend
 Feature: This is a demo feature one
 
 

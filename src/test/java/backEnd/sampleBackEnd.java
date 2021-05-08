@@ -13,7 +13,7 @@ import java.util.HashMap;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class sampleBackend {
+public class sampleBackEnd {
 
     private static Response response;
     private static String jsonString;
@@ -26,7 +26,7 @@ public class sampleBackend {
 //        RestAssured.basePath = "/cryptocurrency/map";
 //    }
 
-    //@Test(priority = 0)
+    @Test(priority = 0)
     public void getCoinIds() {
         Response res = given()
                 .header("Content-Type", "application/json")
@@ -60,7 +60,7 @@ public class sampleBackend {
         System.out.println("Total Currency Ids: " + currencyIds.size());
     }
 
-    // @Test(priority = 1)
+     @Test(priority = 1)
     public void convertToBolivianCurrency() {
 
         // Price of 1 BTC
@@ -101,7 +101,7 @@ public class sampleBackend {
         System.out.println("Price of 1 ETH coin in BOB currency: " + price_of_eth_into_bob_currency);
     }
 
-    //@Test(priority = 3)
+    @Test(priority = 3)
     public void retrieveInfoOfEthereum() {
         given()
                 .header("Content-Type", "application/json")
@@ -119,7 +119,7 @@ public class sampleBackend {
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void getMineableTagsAndCurrencyInfoOfFirstTenCurrencies() {
         Response res = given()
                 .header("Content-Type", "application/json")

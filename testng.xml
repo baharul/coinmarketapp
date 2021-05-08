@@ -3,7 +3,8 @@
 <suite name="Coin Market Test cases">
     <test name="Regression">
         <classes>
-            <class name="backEnd.sampleBackend"/>
+            <class name="frontEnd.sampleFrontEnd"/>
+            <class name="backEnd.sampleBackEnd"/>
         </classes>
     </test> <!-- Test -->
 </suite>
