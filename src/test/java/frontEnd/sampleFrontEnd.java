@@ -46,7 +46,6 @@ public class sampleFrontEnd {
     ;
 
 
-    @BeforeTest
     public void setUp() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -54,13 +53,14 @@ public class sampleFrontEnd {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    @Test(priority = 0)
-    public void verifyHundredResultsDisplayed() throws InterruptedException {
-
+    public void userIsOnHomePage() {
         // Open coinmarketapp in the browser
         driver.get("https://coinmarketcap.com/");
         driver.manage().window().maximize();
 
+    }
+
+    public void userLogin() {
         // Close Cookie Banner
         driver.findElement(By.xpath("//div[@class='cmc-cookie-policy-banner__close']")).click();
 
@@ -69,11 +69,17 @@ public class sampleFrontEnd {
         driver.findElement(By.xpath("//input[@class='cxm5lu-0 bOgmnN']")).sendKeys("iambaharulislam@gmail.com");
         driver.findElement(By.xpath("//div[contains(@class,'last')]//input[@class='cxm5lu-0 bOgmnN']")).sendKeys("Pdf@2016");
         driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 iGZjcz')]")).click();
+    }
 
+    public void applyHundredRowsFilter() throws InterruptedException {
         // apply Filter for the first 100 results
         Thread.sleep(2000);
         driver.findElement(By.xpath("//div[starts-with(@class,'sc-1mxz8p6-10 iXekDn')]//div[contains(@class,'sc-16r8icm-0 tu1guj-0 hueEpF')]")).click();
         driver.findElement(By.xpath("//div[starts-with(@class,'sc-16r8icm-0 sc-1f0grbq-0 jvQpLZ')]//button[contains(@class,'sc-1ejyco6-0 igBkAX')][1]")).click();
+    }
+
+
+    public void verifyHundredResultsDisplayed() throws InterruptedException {
 
         //Verify 100 results are displayed in the web table
         totalResults = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr")).size();
@@ -96,7 +102,7 @@ public class sampleFrontEnd {
         }
     }
 
-    @Test(priority = 1)
+
     public void addToWatchList() throws InterruptedException {
         int counter = 0;
         for (int i = 1; i <= 5; i++) {
@@ -120,6 +126,9 @@ public class sampleFrontEnd {
 
         }
 
+    }
+
+    public void openWatchListInNewTab() throws InterruptedException {
         parentTab = driver.getWindowHandle();
         WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
         childTab = newTab.getWindowHandle();
@@ -129,7 +138,7 @@ public class sampleFrontEnd {
         Thread.sleep(3000);
     }
 
-    @Test(priority = 2)
+
     public void extractDataFromWebTable() {
 
         WebElement tableHeading = driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//th//p"));
@@ -140,6 +149,7 @@ public class sampleFrontEnd {
             System.out.println("Heading List ==> " + headingList.size());
         }
 
+        totalResults = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr")).size();
         for (int j = 1; j <= totalResults; j++) {
 
             WebElement _name_ = driver.findElement(By.xpath("//table//tbody//tr" + "[" + j + "]" + "//td[3]//div[contains(@class,'sc-16r8icm-0')]/p"));
@@ -173,34 +183,28 @@ public class sampleFrontEnd {
 
     }
 
-    @Test(priority = 3)
-    public void compareDataAfterFilter() throws InterruptedException {
+
+    public void selectAnyCryptoCurrency() {
         WebElement filterBtn = driver.findElement(By.xpath("//div[@class='sc-1mxz8p6-8 gcSysL']//button[contains(@class,'table-control-filter')]"));
         Coordinates cor = ((Locatable) filterBtn).getCoordinates();
         cor.inViewPort();
 
 
-        Actions action = new Actions(driver);
-        WebElement cryptoCurrencyMenuOption = driver.findElement(By.xpath("//ul[@class='sc-1evth2q-1 hpzJjv']//li[1]"));
-        action.moveToElement(cryptoCurrencyMenuOption).build().perform();
-        Thread.sleep(15000);
-        WebElement subMenuOption = driver.findElement(By.xpath("//div[@class='tippy-box']//div[starts-with(@class,'sc-134')]//h6"));
-        action.moveToElement(subMenuOption).build().perform();
-        Thread.sleep(5000);
-
-        WebElement logo = driver.findElement(By.xpath("//div[@class='sc-7i7lua-0 iuycCs cmc-logo cmc-logo--size-large']"));
-        action.moveToElement(logo).build().perform();
-        Thread.sleep(5000);
-
-
-        driver.findElement(By.xpath("//h1[@class='sc-1q9q90x-0 dlDcED']")).click();
+        WebElement heading = driver.findElement(By.xpath("//h1[@class='sc-1q9q90x-0 dlDcED']"));
+        wait.until(ExpectedConditions.elementToBeClickable(heading));
         filterBtn.click();
         WebElement addFilterBtn = driver.findElement(By.xpath("//ul[@class='container___QEYqH']//li[5]/button"));
         addFilterBtn.click();
 
 
-        int totalDrpDwn = driver.findElements(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']/button")).size();
-        System.out.println("DrpDwn Size ===> " + totalDrpDwn);
+        WebElement _allCryptoCurrencyDrpDwn = driver.findElement(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi'][1]/button"));
+        _allCryptoCurrencyDrpDwn.click();
+        driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
+        driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 dgwIZo cmc-filter-button')]")).click();
+
+    }
+
+    public void applyingRandomFilters() throws InterruptedException {
 
         /*
              Applying filters for
@@ -211,41 +215,50 @@ public class sampleFrontEnd {
              in which result should show only "DOGECOIN"
          */
 
-        for (int drpDwn = 1; drpDwn <= totalDrpDwn; drpDwn++) {
+
+        WebElement moreFilterBtn = driver.findElement(By.xpath("//ul[@class='container___QEYqH']//li[5]/button"));
+        Coordinates cor = ((Locatable) moreFilterBtn).getCoordinates();
+        cor.inViewPort();
+        wait.until(ExpectedConditions.visibilityOf(moreFilterBtn));
+        Thread.sleep(5000);
+        moreFilterBtn.click();
+        int totalDrpDwn = driver.findElements(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']/button")).size();
+        for (int drpDwn = 2; drpDwn <= totalDrpDwn; drpDwn++) {
             WebElement _drpDwn = driver.findElement(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']" + "[" + drpDwn + "]" + "/button"));
             String drpDwnName = _drpDwn.getText();
+            //_drpDwn.click();
+            //driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 dgwIZo cmc-filter-button')]")).click();
 
             switch (drpDwnName) {
-                case "All Cryptocurrencies":
-                    _drpDwn.click();
-                    driver.findElement(By.xpath("//div[@data-qa-id='range-filter-crypto']//div[2]//button[contains(@class,'cmc-option-button')]")).click();
-                    break;
                 case "Price":
                 case "Circulating Supply":
                 case "Volume":
                     _drpDwn.click();
+                    System.out.println(drpDwnName + " is clicked!");
+                    Thread.sleep(2000);
                     driver.findElement(By.xpath("//div[@class='cmc-filter-presets']/button[1]")).click();
                     driver.findElement(By.xpath("//button[@data-qa-id='filter-dd-button-apply']")).click();
                     break;
                 default:
                     break;
             }
-    }
-
-        driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 dgwIZo cmc-filter-button')]")).click();
-
-
-        String _nameAfterFilter_ = driver.findElement(By.xpath("//table//tbody//tr[1]//td[3]//div[contains(@class,'sc-16r8icm-0')]/p")).getText();
-        System.out.println("First Coin displayed after filter ==> "+ _nameAfterFilter_);
-
-        if(name.contains(_nameAfterFilter_)){
-            System.out.println("Hurray, As Expected DogeCoin Has filtered Out and results were compared successfully!!!!!!!!!!!!!!!!");
         }
 
+        driver.findElement(By.xpath("//button[contains(@class,'sc-1ejyco6-0 dgwIZo cmc-filter-button')]")).click();
+    }
+
+    public void compareDataAfterFilter() {
+
+        String _nameAfterFilter_ = driver.findElement(By.xpath("//table//tbody//tr[1]//td[3]//div[contains(@class,'sc-16r8icm-0')]/p")).getText();
+        System.out.println("First Coin displayed after filter ==> " + _nameAfterFilter_);
+
+        if (name.contains(_nameAfterFilter_)) {
+            System.out.println("Hurray, As Expected " + _nameAfterFilter_ + " Has filtered Out and results were compared successfully!!!!!!!!!!!!!!!!");
+        }
 
     }
 
-    @AfterTest
+
     public void tearDown() throws InterruptedException {
         driver.quit();
     }
