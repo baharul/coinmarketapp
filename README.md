@@ -37,6 +37,6 @@ Extent Spark Reports:
 
 ![image](https://user-images.githubusercontent.com/7221247/117559638-00362c80-b098-11eb-838f-4bd887a4c84a.png)
 
-![image](https://user-images.githubusercontent.com/7221247/117559644-1643ed00-b098-11eb-87ea-8d9c70484e84.png)
+![image](https://user-images.githubusercontent.com/7221247/117559896-34aae800-b09a-11eb-89b3-84b7348397af.png)
 
       
