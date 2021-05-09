@@ -91,14 +91,14 @@ public class sampleFrontEnd {
         try {
             //Verify 100 results are displayed in the web table
             totalResults = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr")).size();
-            System.out.println("First Check Total No Of Results Displayed after selecting the filter ==> " + totalResults);
+            //System.out.println("First Check Total No Of Results Displayed after selecting the filter ==> " + totalResults);
             driver.findElement(By.xpath("//div[@class='sc-57oli2-0 dEqHl cmc-body-wrapper']")).click();
 
             // Scroll down to the bottom of the page and verify the last row is 100
             boolean hundredthRow = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr[100]//td[2]/p")).size() > 0;
-            System.out.println("ELEMENT PRESENT ============ " + hundredthRow);
+            //System.out.println("ELEMENT PRESENT ============ " + hundredthRow);
             if (!hundredthRow) {
-                System.out.println("$$$$$$$$$$$$$$$$$$ coming inside $$$$$$$$$$$$$$$$$$");
+                //System.out.println("$$$$$$$$$$$$$$$$$$ coming inside $$$$$$$$$$$$$$$$$$");
                 WebElement lastRowTable = driver.findElement(By.xpath("//div[@class='seo-text__title']"));
                 Coordinates cor = ((Locatable) lastRowTable).getCoordinates();
                 cor.inViewPort();
@@ -168,7 +168,7 @@ public class sampleFrontEnd {
             for (int i = 3; i <= 9; i++) {
                 String tblHeading = driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//th//p")).getText();
                 headingList.add(tblHeading);
-                System.out.println("Heading List ==> " + headingList.size());
+                //System.out.println("Heading List ==> " + headingList.size());
             }
 
             totalResults = driver.findElements(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr")).size();

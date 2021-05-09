@@ -32,7 +32,7 @@ public class sampleBackEnd {
 
             //Retrieve size of array
             int size = js.getInt("data.size()");
-            System.out.println("Array size is: " + size);
+            //System.out.println("Array size is: " + size);
             String symbol = null;
             currencyIds = new HashMap<String, Integer>();
             for (int i = 0; i <= size - 1; i++) {
@@ -177,7 +177,7 @@ public class sampleBackEnd {
 
             JsonPath js = new JsonPath(res.asString());
             int size = js.getInt("data.size()");
-            System.out.println("Array size is: " + size);
+            //System.out.println("Array size is: " + size);
 
             for (int i = 1; i <= size; i++) {
                 String name = js.getString("data." + i + ".name");
