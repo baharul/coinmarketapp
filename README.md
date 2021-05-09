@@ -1,5 +1,5 @@
 # Coinmarket App Automation
-This Automation project is based on the tech stack of Java 8+, Git, Selenium 4, Maven, Rest Assured  
+This Automation project is based on the tech stack of Java 8+, Git, Selenium 4, Maven, Rest Assured, Cucumber-BDD  
 
 # Pre-requisites:
 
