@@ -27,7 +27,7 @@ Please make sure you have the below softwares installed.
 
 Feature File: FrontEnd
 
-![image](https://user-images.githubusercontent.com/7221247/117559607-d846c900-b097-11eb-9f8c-eb3f8088f5dc.png)
+![image](https://user-images.githubusercontent.com/7221247/117559813-8010c680-b099-11eb-845a-1c489e2ec955.png)
 
 Feature File: BackEnd
 
