@@ -1,10 +1,18 @@
 @backend
-Feature: This is a demo feature one
+Feature: This is Backend API feature Testing
 
-Background:
-  Given User launches coinmarketapp
+  @betcone
+  Scenario: Verify user is able to retrieve ID's of BTC,USDT and ETH and use it for price conversion Api
+    Given User is able to retrieve ID's of given cryptocurrencies
+    And User is using those id for price conversion api
 
-  Scenario: Verify that 100 results are displayed
-    Given Precondition is given
-    When Something is done
-    Then Something is expected
+  @betctwo
+  Scenario: Verify user is able to retrieve Ethereum technical documentation and respective information
+    Given User is able to retrieve Ethereum technical documentation
+    And User is able to verify all given information in ethereum api
+
+  @betcthree
+  Scenario:  Verify user is able to retrieve first 10 currencies and check mineable tags along with correct cryptocurrencies
+    Given User is able to retrieve first ten currencies
+    And User is able to verify all given information in cryptocurrency info api
+

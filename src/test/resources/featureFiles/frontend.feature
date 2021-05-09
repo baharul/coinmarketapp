@@ -1,11 +1,11 @@
 
 @frontend
-Feature: This is a demo feature one
+Feature: This is FrontEnd feature Testing
 
   Background:
     Given User launches coinmarketapp website
 
-  @tcone
+  @fetcone
   Scenario: Verify only 100 rows of results displayed
     Given User is on the landing page
     And User logged with his credentials
@@ -13,7 +13,7 @@ Feature: This is a demo feature one
     Then User sees only hundred results in webtable
     And User closes the browser
 
-  @tctwo
+  @fetctwo
   Scenario: Verify user is able to add cryptos to watchlist and extract data
     Given User is on the landing page
     And User logged with his credentials
@@ -22,7 +22,7 @@ Feature: This is a demo feature one
     And User extracts data from the webtable from the parent tab
     And User closes the browser
 
-  @tcthree
+  @fetcthree
   Scenario: Verify user is able to add cryptos to watchlist and extract data
     Given User is on the landing page
     And User logged with his credentials
