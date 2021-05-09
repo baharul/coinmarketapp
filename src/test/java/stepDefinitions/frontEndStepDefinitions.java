@@ -1,13 +1,13 @@
 package stepDefinitions;
 
 
-import frontEnd.sampleFrontEnd;
+import reusuableComponents.frontEnd.sampleFrontEnd;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class frontEndStepDefs extends sampleFrontEnd{
+public class frontEndStepDefinitions extends sampleFrontEnd{
     sampleFrontEnd web = new sampleFrontEnd();
 
     @Given("User launches coinmarketapp website")

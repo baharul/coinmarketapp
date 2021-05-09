@@ -1,6 +1,6 @@
 package stepDefinitions;
 
-import backEnd.sampleBackEnd;
+import reusuableComponents.backEnd.sampleBackEnd;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 

@@ -1,12 +1,9 @@
-package backEnd;
+package reusuableComponents.backEnd;
 
 import io.restassured.RestAssured.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import org.hamcrest.Matchers.*;
 
 import java.util.HashMap;
 
