@@ -75,7 +75,9 @@ public class sampleFrontEnd {
     public void applyHundredRowsFilter() throws InterruptedException {
         try {
             // apply Filter for the first 100 results
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
+            WebElement select100 = driver.findElement(By.xpath("//div[starts-with(@class,'sc-1mxz8p6-10 iXekDn')]//div[contains(@class,'sc-16r8icm-0 tu1guj-0 hueEpF')]"));
+            wait.until(ExpectedConditions.elementToBeClickable(select100));
             driver.findElement(By.xpath("//div[starts-with(@class,'sc-1mxz8p6-10 iXekDn')]//div[contains(@class,'sc-16r8icm-0 tu1guj-0 hueEpF')]")).click();
             driver.findElement(By.xpath("//div[starts-with(@class,'sc-16r8icm-0 sc-1f0grbq-0 jvQpLZ')]//button[contains(@class,'sc-1ejyco6-0 igBkAX')][1]")).click();
         } catch (Exception e) {
@@ -101,7 +103,7 @@ public class sampleFrontEnd {
                 Coordinates cor = ((Locatable) lastRowTable).getCoordinates();
                 cor.inViewPort();
             }
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             String takeHundred = driver.findElement(By.xpath("//div//table[starts-with(@class,'cmc-table cmc-table___11lFC cmc-table-homepage___2_guh')]//tbody//tr" + "[" + totalResults + "]" + "//td[2]/p")).getText();
             if (takeHundred.equalsIgnoreCase("100")) {
                 System.out.println("Double Check Total No Of Results Displayed by selecting last row in the Table ==> " + takeHundred);
@@ -149,9 +151,9 @@ public class sampleFrontEnd {
             WebDriver newTab = driver.switchTo().newWindow(WindowType.TAB);
             childTab = newTab.getWindowHandle();
             driver.navigate().to("https://coinmarketcap.com/watchlist/");
-            Thread.sleep(3000);
+            Thread.sleep(3000);  // Intentionally having this wait as viewer should be able to see switch between two tabs
             driver.switchTo().window(parentTab);
-            Thread.sleep(3000);
+            Thread.sleep(3000);  // Intentionally having this wait as viewer should be able to see switch between two tabs
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -249,7 +251,7 @@ public class sampleFrontEnd {
             Coordinates cor = ((Locatable) moreFilterBtn).getCoordinates();
             cor.inViewPort();
             wait.until(ExpectedConditions.visibilityOf(moreFilterBtn));
-            Thread.sleep(5000);
+            //Thread.sleep(5000);
             moreFilterBtn.click();
             int totalDrpDwn = driver.findElements(By.xpath("//div[@class='sc-16r8icm-0 cUoQSu filter-area']//div[@class='szoamt-0 buxHoi']/button")).size();
             for (int drpDwn = 2; drpDwn <= totalDrpDwn; drpDwn++) {
@@ -264,7 +266,7 @@ public class sampleFrontEnd {
                     case "Volume":
                         _drpDwn.click();
                         System.out.println(drpDwnName + " is clicked!");
-                        Thread.sleep(2000);
+                        Thread.sleep(2000);  // Intentionally having this wait as viewer should be able to see filters are being applied
                         driver.findElement(By.xpath("//div[@class='cmc-filter-presets']/button[1]")).click();
                         driver.findElement(By.xpath("//button[@data-qa-id='filter-dd-button-apply']")).click();
                         break;
