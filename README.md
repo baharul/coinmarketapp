@@ -10,7 +10,7 @@ Please make sure you have the below softwares installed.
   3. Git
   4. Intellij or Eclipse (Optional)
 
-#Git
+# Git
          git clone https://github.com/baharul/coinmarketapp.git
          cd coinmarketapp
          
