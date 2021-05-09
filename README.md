@@ -27,8 +27,16 @@ Please make sure you have the below softwares installed.
 
 Feature File: FrontEnd
 
+![image](https://user-images.githubusercontent.com/7221247/117559607-d846c900-b097-11eb-9f8c-eb3f8088f5dc.png)
+
 Feature File: BackEnd
 
+![image](https://user-images.githubusercontent.com/7221247/117559624-ea286c00-b097-11eb-9306-00294ffa2388.png)
+
 Extent Spark Reports:
+
+![image](https://user-images.githubusercontent.com/7221247/117559638-00362c80-b098-11eb-838f-4bd887a4c84a.png)
+
+![image](https://user-images.githubusercontent.com/7221247/117559644-1643ed00-b098-11eb-87ea-8d9c70484e84.png)
 
       
