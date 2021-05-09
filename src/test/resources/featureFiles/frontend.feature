@@ -23,7 +23,7 @@ Feature: This is FrontEnd feature Testing
     And User closes the browser
 
   @fetcthree
-  Scenario: Verify user is able to add cryptos to watchlist and extract data
+  Scenario: Verify user is able to compare data of selecting random ranking vs data of applying random filters
     Given User is on the landing page
     And User logged with his credentials
     When User selects any ranking under cryptocurrencies drpdown
